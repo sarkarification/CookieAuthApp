@@ -46,7 +46,7 @@ const Comments = (props) => {
       <h2>User Comments</h2>
       {!isAddingComment && (
         <button className='btn' onClick={startAddCommentHandler}>
-          Add a Comment
+          Add a Comment!
         </button>
       )}
       {isAddingComment &&
