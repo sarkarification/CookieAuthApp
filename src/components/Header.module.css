@@ -1,0 +1,27 @@
+.container {
+  position: fixed;
+  margin: 0;
+  width: 100%;
+  height: 1.25rem;
+  /* border: 2px solid black; */
+  background: white;
+  z-index: 1;
+  text-align: center;
+}
+
+.GiNetworkBars {
+  position: absolute;
+  left: 0.3rem;
+}
+.FaWifi {
+  position: absolute;
+  left: 2rem;
+}
+.FaBatteryThreeQuarters {
+  position: absolute;
+  left: 23rem;
+}
+.HiLightningBolt {
+  position: absolute;
+  left: 24.5rem;
+}

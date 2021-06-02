@@ -1,36 +1,27 @@
-import { Switch, Route,Redirect } from 'react-router-dom';
-import { useContext } from 'react';
-import Layout from './components/Layout/Layout';
-import UserProfile from './components/Profile/UserProfile';
-import AuthPage from './pages/AuthPage';
-import HomePage from './pages/HomePage';
-import AuthContext from './store/auth-context';
-
+import { useState } from "react";
+import NotesPage from "./components/NotesPage";
+import { useCookies } from "react-cookie";
+import PhoneAuthPage from "./components/PhoneAuthPage";
 
 function App() {
+  const [cookies, setCookie] = useCookies(["user"]);
+  const [authData, setAuthData] = useState(false);
 
-  const authCtx = useContext(AuthContext);
+  const authDataHandler = () => {
+    setAuthData(true);
+    // console.log("app.js");
+    // console.log(authData);
+  };
 
+  setCookie("Cookie", "__cfduid=df9b865983bd04a5de2cf5017994bbbc71618565720", {
+    path: "/",
+  });
 
   return (
-    <Layout>
-      <Switch>
-        <Route path='/' exact>
-          <HomePage />
-        </Route>
-        {!authCtx.isLoggedIn && (
-        <Route path='/auth' exact>
-          <AuthPage />
-        </Route>)}
-          <Route path='/profile' exact>
-          {authCtx.isLoggedIn && <UserProfile />}
-          {!authCtx.isLoggedIn && <Redirect to='/auth' />}
-          </Route>
-          <Route path='*'>
-            <Redirect to='/' />
-          </Route>
-      </Switch>
-    </Layout>
+    <>
+      {!authData && <PhoneAuthPage authData={authDataHandler} />}
+      {authData && <NotesPage />}
+    </>
   );
 }
 
